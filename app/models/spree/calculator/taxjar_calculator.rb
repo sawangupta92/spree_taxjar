@@ -94,7 +94,7 @@ module Spree
 
       def cache_key(order, item, address)
         if item.is_a?(Spree::LineItem)
-          ['Spree::LineItem', order.id, item.id, address.state.id, address.zipcode, item.amount, :amount_to_collect]
+          ['Spree::LineItem', order.id, item.id, address.state.id, address.zipcode, item.taxable_amount, :amount_to_collect]
         else
           ['Spree::Shipment', order.id, item.id, address.state.id, address.zipcode, item.cost, :amount_to_collect]
         end
