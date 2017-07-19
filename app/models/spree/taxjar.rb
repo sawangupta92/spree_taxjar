@@ -182,7 +182,7 @@ module Spree
       def shipment_tax_params
         address_params.merge({
           amount: 0,
-          shipping: @shipment.cost
+          shipping: @shipment.cost + @shipment.adjustments.where.not(source_type: "Spree::TaxRate").sum(&:amount).to_f
         })
       end
 
